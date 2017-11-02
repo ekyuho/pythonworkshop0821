@@ -3,15 +3,15 @@ import datetime
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/update')
 def index():
     with open("log.txt", "a") as f:
         dstr = datetime.datetime.now()
         f.write("%s, " % (dstr))
         f.write("%s, %s,  " % (request.args.get('field1', default=""), request.args.get('field2', default="")))
         f.write("\n");
-        print(dstr, request.args.get('field1', default=""), request.args.get('field2', default=""))
-    return 'Thank you'
+        r = (%s %s %s)%(dstr, request.args.get('field1', default=""), request.args.get('field2', default=""))
+    return 'Thank you -- ' + r
 @app.route('/cakes')
 def cakes():
     return 'Yummy cakes!'
