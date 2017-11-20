@@ -9,10 +9,12 @@ def index():
     with open("log.txt", "a") as f:
         dstr = datetime.datetime.now()
         f.write("%s, " % (dstr))
+        str = ""
         for p in request.args:
-            f.write("%s, %s,  " % (p, request.args[p]))
+            str = "%s, %s,  " % (p, request.args[p])
+            f.write(str)
         f.write("\n");
-    return 'I got: a=' + request.args['a']
+    return 'I got: a=' + str
 
 @app.route('/cakes')
 def cakes():
